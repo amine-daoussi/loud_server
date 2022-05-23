@@ -9,8 +9,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
-app.get("/", () => {
-  resizeBy.send("welcome");
+app.get("/", (req, res) => {
+  req.send("welcome");
 });
 
 app.post("/api/forma", (req, res) => {
@@ -21,7 +21,7 @@ app.post("/api/forma", (req, res) => {
     secure: false,
     auth: {
       user: "loudAndClearAnalysis@gmail.com",
-      pass: "kyotpmbpeuobjepn"
+      pass: "kyotpmbpeuobjepn",
     },
   });
   let mailOptions = {
@@ -52,7 +52,7 @@ app.post("/api/forma", (req, res) => {
   smtpTransport.close();
 });
 
-const port = 4001;
+const port = 4000;
 
 app.listen(port, () => {
   console.log("server running at port:", port);
