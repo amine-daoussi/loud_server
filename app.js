@@ -12,8 +12,11 @@ app.use(cors());
 app.get("/", (req, res) => {
   res.json("welcome");
 });
+app.get("/test", (req, res) => {
+  res.json(" test welcome");
+});
 
-app.post("/api/forma", (req, res) => {
+app.post("/forma", (req, res) => {
   let data = req.body;
   let smtpTransport = nodemailer.createTransport({
     service: "Gmail",
