@@ -9,14 +9,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
-app.get("/", (req, res) => {
-  res.json("welcome");
-});
-app.get("/test", (req, res) => {
-  res.json(" test welcome");
-});
+// app.get("/", (req, res) => {
+//   res.json("welcome");
+// });
+// app.get("/test", (req, res) => {
+//   res.json(" test welcome");
+// });
 
-app.post("/forma", (req, res) => {
+app.post("mail/forma", (req, res) => {
   let data = req.body;
   let smtpTransport = nodemailer.createTransport({
     service: "Gmail",
@@ -53,6 +53,11 @@ app.post("/forma", (req, res) => {
     }
   });
   smtpTransport.close();
+});
+
+// All other GET requests not handled before will return our React app
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
 });
 
 const port = 4000;
